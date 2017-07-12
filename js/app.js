@@ -10,11 +10,12 @@ myApp.controller("myController", [ "$scope", function($scope){
 // initialize new user empty object
 $scope.newUser = {};
 $scope.selectedUser = {};
-
+$scope.message = "";
 // Add User
 $scope.saveUser = function(user){
     $scope.users.push($scope.newUser);
     $scope.newUser = {};
+    $scope.message = "New User added successfully.";
 };
 
 // Edit User
@@ -23,13 +24,19 @@ $scope.selectUser = function(user){
 };
 
 $scope.updateUser = function(){
-
-}
+    $scope.message = "User Updated successfull.";
+};
 
 // Delete User
 $scope.deleteUser = function(){
     $scope.users.splice($scope.users.indexOf($scope.selectedUser), 1);
+    $scope.message = "User deleted successfully.";
+};
+
+$scope.clearMessage = function(){
+    $scope.message = "";
 }
+
 
 }]);
 

@@ -33,8 +33,17 @@
         </div>
     </nav>
     <div class="container">
-        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addUserModal">Add User</button>
-
+        <hr>
+        <div style="display: inline;">
+            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addUserModal">Add User</button>
+            <p class="lead">All Users</p>
+        </div>
+        
+        <hr>
+        <div class="alert alert-info alert-dismissable fade in" ng-if="message">
+            <a href="#" class="close" ng-click="clearMessage()">&times;</a>
+            <strong>Info!</strong> {{ message }}
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
