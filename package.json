@@ -1,0 +1,24 @@
+{
+  "name": "angularjs-crud-demo",
+  "version": "1.0.0",
+  "description": "A Simple Angular CRUD Demo",
+  "main": "app.js",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T-G/AngularJs-Crud-Demo.git"
+  },
+  "author": "Theotones Gomes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/T-G/AngularJs-Crud-Demo/issues"
+  },
+  "homepage": "https://github.com/T-G/AngularJs-Crud-Demo#readme"
+}

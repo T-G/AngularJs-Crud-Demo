@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJs - Simple CRUD App</title>
+
+    <!-- Bootstrap -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="myApp" , ng-controller="myController">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Demo Site</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addUserModal">Add User</button>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Action(S)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.fullName}}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <button class="btn btn-info" data-toggle="modal" data-target="#editUserModal">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+    <!--/.container-->
+
+    <!--Add User Modal-->
+    <div id="addUserModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Register New User</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" ng-model="newUser.username">
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" ng-model="newUser.fullName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullName">Email</label>
+                            <input type="text" class="form-control" ng-model="newUser.email">
+                        </div>
+
+                        <button type="submit" class="btn btn-default" ng-click="saveUser(newUser)" data-dismiss="modal">Save</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Add User Modal-->
+
+    <!--Edit User Modal-->
+    <div id="editUserModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">You are now editing {{ user.username }}</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" value="{{user.username}}" ng-model="selectedUser.username">
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" ng-model="selectedUser.fullName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fullName">Email</label>
+                            <input type="text" class="form-control" ng-model="selectedUser.email">
+                        </div>
+
+                        <button type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-class="editUser(selectedUser)" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div><!--Edit User Modal-->
+
+    <!--Delete User Modal-->
+
+    <!--Delete User Modal-->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
