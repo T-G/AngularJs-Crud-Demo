@@ -52,7 +52,7 @@
                     <td>{{ user.fullName}}</td>
                     <td>{{ user.email }}</td>
                     <td>
-                        <button class="btn btn-info" data-toggle="modal" data-target="#editUserModal">Edit</button>
+                        <button class="btn btn-info" data-toggle="modal" ng-click="selectUser(user)" data-target="#editUserModal">Edit</button>
                         <button class="btn btn-danger">Delete</button>
                     </td>
                 </tr>
@@ -109,7 +109,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">You are now editing {{ user.username }}</h4>
+                    <h4 class="modal-title">You are now editing {{ selectedUser.username }}</h4>
                 </div>
                 <div class="modal-body">
                     <form>

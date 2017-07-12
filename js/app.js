@@ -18,8 +18,8 @@ $scope.saveUser = function(user){
 };
 
 // Edit User
-$scope.editUser = function(user){
-    $scope.selectedUser = $scope
+$scope.selectUser = function(user){
+    $scope.selectedUser = user;
 };
 
 // Delete User
