@@ -22,7 +22,14 @@ $scope.selectUser = function(user){
     $scope.selectedUser = user;
 };
 
+$scope.updateUser = function(){
+
+}
+
 // Delete User
+$scope.deleteUser = function(){
+    $scope.users.splice($scope.users.indexOf($scope.selectedUser), 1);
+}
 
 }]);
 
