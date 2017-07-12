@@ -40,7 +40,7 @@
         </div>
         
         <hr>
-        <div class="alert alert-info alert-dismissable fade in" ng-if="message">
+        <div id="alert" class="alert alert-info alert-dismissable" ng-show="Flg">
             <a href="#" class="close" ng-click="clearMessage()">&times;</a>
             <strong>Info!</strong> {{ message }}
         </div>
@@ -83,22 +83,30 @@
                     <h4 class="modal-title">Register New User</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form name="createUserForm" novalidate>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" ng-model="newUser.username">
+                            <input type="text" class="form-control" name="username" id="username" ng-model="newUser.username" required>
+                            <span class="text-danger" ng-if="createUserForm.$submitted && createUserForm.username.$invalid"> Username is required</span>
                         </div>
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" ng-model="newUser.fullName">
+                            <input type="text" class="form-control" name="fullName" ng-model="newUser.fullName" placeholder="Fullname" required>
+                            <span class="text-danger" ng-show="createUserForm.$submitted && createUserForm.fullName.$invalid"> Fullname is required</span>
                         </div>
-
                         <div class="form-group">
-                            <label for="fullName">Email</label>
-                            <input type="text" class="form-control" ng-model="newUser.email">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" ng-model="newUser.email" required>
+                            <span class="text-danger" ng-if="createUserForm.$submitted && createUserForm.email.$error.required"> Email is required</span>
+                            <span class="text-danger" ng-if="createUserForm.$submitted && createUserForm.email.$error.email"> Email is Invalid </span>
                         </div>
 
-                        <button type="submit" class="btn btn-default" ng-click="saveUser(newUser)" data-dismiss="modal">Save</button>
+                        <button type="submit" class="btn btn-default" 
+                                ng-click="saveUser(newUser, createUserForm.$valid)"
+                                ng-disabled="createUserForm.username.$dirty && createUserForm.username.$invalid ||  
+                                             createUserForm.email.$dirty && createUserForm.email.$invalid"
+                                
+                        >Save</button>
                     </form>
                 </div>
                 <div class="modal-footer">
