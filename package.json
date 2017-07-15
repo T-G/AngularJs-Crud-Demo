@@ -2,14 +2,18 @@
   "name": "angularjs-crud-demo",
   "version": "1.0.0",
   "description": "A Simple Angular CRUD Demo",
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "angular": "^1.6.5",
-    "bootstrap": "^3.3.7"
+    "body-parser": "^1.17.2",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.8.4",
+    "express": "^4.15.3"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,7 @@
     <title>AngularJs - Simple CRUD App</title>
 
     <!-- Bootstrap -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -102,11 +102,12 @@
                         </div>
 
                         <button type="submit" class="btn btn-default" 
-                                ng-click="saveUser(newUser, createUserForm.$valid)"
-                                ng-disabled="createUserForm.username.$dirty && createUserForm.username.$invalid ||  
-                                             createUserForm.email.$dirty && createUserForm.email.$invalid"
-                                
-                        >Save</button>
+                                ng-disabled="createUserForm.username.$pristine || 
+                                             createUserForm.username.$dirty && createUserForm.username.$invalid ||  
+                                             createUserForm.email.$pristine || 
+                                             createUserForm.email.$dirty && createUserForm.email.$invalid"                                
+                                ng-click="saveUser(newUser, createUserForm.$valid)" data-dismiss="modal"
+                                > Save</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -180,8 +181,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 
