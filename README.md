@@ -11,3 +11,7 @@ Steps:
 4. Open a web browser and navigate to localhost:3000
 
 Initially, you won't see any record. Add new record(s) and you will see the difference.
+
+MondoDB:
+If you have username and password: change the connection string to match, as follows:
+mongoose.connect('mongodb://username:password@host:port/database"); 
