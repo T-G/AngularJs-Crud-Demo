@@ -1,24 +1,47 @@
 var myApp = angular.module("myApp", []);
 
-myApp.controller("myController", [ "$scope","utilityService", function($scope, utilityService){
-    $scope.users = [
-        {username:"janedoe", fullName: "Jane Doe", email: "jane@test.com"},
-        {username:"don", fullName: "Donney Jones", email: "don@yahoo.com"},
-        {username:"lola", fullName: "Lola Maps", email: "lola@yahoo.com"},
-    ];
+myApp.controller("myController", 
+                [ 
+                    "$scope",
+                    "utilityService", 
+                    "$http", 
+                    "$httpParamSerializerJQLike", 
+                    function($scope, utilityService, $http, $httpParamSerializerJQLike){
+    
+    function init(){
+        // initialize new user empty object
+        $scope.newUser = {};
+        $scope.selectedUser = {};
+        $scope.message = "";
 
-// initialize new user empty object
-$scope.newUser = {};
-$scope.selectedUser = {};
-$scope.message = "";
+        $http.get("http://127.0.0.1:3000/users/").then(function(response){
+            $scope.users = response.data;
+            console.log($scope.users);
+        });
+    }
+
+    init();
+
+
 // Add User
 $scope.saveUser = function(user, IsValid){
     if(IsValid){
-        $scope.users.push($scope.newUser);
-        $scope.newUser = {};
-        $scope.message = "New User added successfully.";
-        $scope.Flg = true;
-        utilityService.myAlert();
+        // $scope.users.push($scope.newUser);
+        $http({
+            url: 'http://127.0.0.1:3000/create/',
+            method: 'POST',
+            data: $httpParamSerializerJQLike($scope.newUser),
+            headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function(response){
+            console.log(response);
+            init();
+            $scope.message = "New User Added Successfully!";
+            $scope.Flg = true;
+            utilityService.myAlert();
+        });
+        
     }
     
 };
@@ -29,17 +52,39 @@ $scope.selectUser = function(user){
 };
 
 $scope.updateUser = function(){
-    $scope.message = "User Updated successfull.";
-    $scope.Flg = true;
-    utilityService.myAlert();
+    
+    $http({
+        url: "http://127.0.0.1:3000/update/",
+        method: "POST",
+        data: $httpParamSerializerJQLike($scope.selectedUser),
+        headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+    }).then(function(response){
+        console.log(response);
+        init();
+        $scope.message = "User Updated successfull.";
+        $scope.Flg = true;
+        utilityService.myAlert();
+    });
 };
 
 // Delete User
 $scope.deleteUser = function(){
-    $scope.users.splice($scope.users.indexOf($scope.selectedUser), 1);
-    $scope.message = "User deleted successfully.";
-    $scope.Flg = true;
-    utilityService.myAlert();
+    $http({
+        url: "http://127.0.0.1:3000/delete/",
+        method: "POST",
+        data: $httpParamSerializerJQLike({"_id": $scope.selectedUser._id}),
+        headers:{
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+    }).then(function(response){
+        console.log(response);
+        init();
+        $scope.message = "User deleted successfully.";
+        $scope.Flg = true;
+        utilityService.myAlert();
+    });  
 };
 
 $scope.clearMessage = function(){
